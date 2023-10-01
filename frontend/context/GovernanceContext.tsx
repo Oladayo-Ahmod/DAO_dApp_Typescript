@@ -22,7 +22,10 @@ const GovernmentProvider: React.FC<{ children: React.ReactNode }> = ({
 
     // states variables
     const [account, setAccount] = useState<string>()
-    const [deployer, setDeployer] = useState<string | undefined>();
+    const [deployer, setDeployer] = useState<string>();
+    const [amount,setAmount] = useState<string>()
+    const [disability, setDisability] = useState(false);
+
 
     // wallet connection
     const connectWallet : GovernanceProps["connectWallet"] =async function(){
@@ -49,6 +52,39 @@ const GovernmentProvider: React.FC<{ children: React.ReactNode }> = ({
           console.log(error);
       }
   }
+
+  // contribution functionality
+  const Contribute =async(modalRef : React.RefObject<HTMLElement>)=>{
+    try {
+        if (amount && connect) {
+            setDisability(true)
+            const provider = new ethers.providers.Web3Provider(connect)
+            const signer = provider.getSigner()
+            const contract = new ethers.Contract(ADDRESS,ABI,signer)
+            const parsedAmount = new ethers.utils.parseEther(amount)
+            const tx = await contract.contribute({value : parsedAmount})
+            await tx.wait(1)
+            setDisability(false)
+            const modalElement = modalRef.current ? modalRef.current : ''
+            modalElement.classList.remove('show')
+            modalElement.style.display = 'none'
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                text: `You have successfully contributed ${amount} ETH to the DAO`,
+                showConfirmButton: true,
+                timer: 4000
+            })
+
+        }
+        else{
+            setDisability(false)
+        }
+    } catch (error) {
+        console.log(error);
+    }
+
+}
 
 
     return (
