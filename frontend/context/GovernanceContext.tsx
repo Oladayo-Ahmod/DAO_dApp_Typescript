@@ -8,7 +8,6 @@ import GovernanceProps from '../src/app/interfaces/governance';
 export const GOVERNANCE_CONTEXT = createContext<GovernanceProps | undefined>(
     undefined
   );
-// states variables
 
 
 let connect : any
@@ -20,8 +19,12 @@ if(typeof window !=='undefined'){
 const GovernmentProvider: React.FC<{ children: React.ReactNode }> = ({
     children,
   }) => {
-    const [account, setAccount] = useState<string>()
 
+    // states variables
+    const [account, setAccount] = useState<string>()
+    const [deployer, setDeployer] = useState<string | undefined>();
+
+    // wallet connection
     const connectWallet : GovernanceProps["connectWallet"] =async function(){
         try {
             if(connect){
@@ -33,6 +36,21 @@ const GovernmentProvider: React.FC<{ children: React.ReactNode }> = ({
             console.log(error);
         }
     }
+
+    // retrieve contract deployer
+    const getDeployer =async()=>{
+      try {
+          const provider = new ethers.providers.Web3Provider(connect)
+          const signer = provider.getSigner()
+          const contract = new ethers.Contract(ADDRESS,ABI,signer)
+          const deployer = await contract.getDeployer()
+          setDeployer(deployer)
+      } catch (error) {
+          console.log(error);
+      }
+  }
+
+
     return (
       <GOVERNANCE_CONTEXT.Provider
         value={{
@@ -45,6 +63,3 @@ const GovernmentProvider: React.FC<{ children: React.ReactNode }> = ({
   };
   
   export default GovernmentProvider;
-
-
-
