@@ -91,7 +91,7 @@ const GovernmentProvider: React.FC<{ children: React.ReactNode }> = ({
 }
 
   // retrieve total balance
-  const getTotalBalance =async()=>{
+  const getTotalBalance : GovernanceProps["getTotalBalance"] =async()=>{
     try {
         const provider = new ethers.providers.Web3Provider(connect)
         const signer = provider.getSigner()
