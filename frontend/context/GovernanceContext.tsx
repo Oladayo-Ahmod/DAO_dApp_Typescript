@@ -54,7 +54,7 @@ const GovernmentProvider: React.FC<{ children: React.ReactNode }> = ({
   }
 
   // contribution functionality
-  const Contribute : GovernanceProps["contribution"] =async(modalRef : React.RefObject<HTMLElement>)=>{
+  const contribute : GovernanceProps["contribution"] =async(modalRef : React.RefObject<HTMLElement>)=>{
     try {
         if (amount && connect) {
             setDisability(true)
@@ -94,7 +94,8 @@ const GovernmentProvider: React.FC<{ children: React.ReactNode }> = ({
       <GOVERNANCE_CONTEXT.Provider
         value={{
          connectWallet,
-         getDeployer
+         getDeployer,
+         contribute
         }}
       >
         {children}
