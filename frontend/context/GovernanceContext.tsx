@@ -38,7 +38,7 @@ const GovernmentProvider: React.FC<{ children: React.ReactNode }> = ({
     }
 
     // retrieve contract deployer
-    const getDeployer =async()=>{
+    const getDeployer : GovernanceProps["getDeployer"]  =async()=>{
       try {
           const provider = new ethers.providers.Web3Provider(connect)
           const signer = provider.getSigner()
@@ -54,7 +54,8 @@ const GovernmentProvider: React.FC<{ children: React.ReactNode }> = ({
     return (
       <GOVERNANCE_CONTEXT.Provider
         value={{
-         connectWallet
+         connectWallet,
+         getDeployer
         }}
       >
         {children}
