@@ -54,7 +54,7 @@ const GovernmentProvider: React.FC<{ children: React.ReactNode }> = ({
   }
 
   // contribution functionality
-  const contribute : GovernanceProps["contribution"] =async(modalRef : React.RefObject<HTMLElement>)=>{
+  const contribute : GovernanceProps["contribute"] =async(modalRef : React.RefObject<HTMLElement>)=>{
     try {
         if (amount && connect) {
             setDisability(true)
