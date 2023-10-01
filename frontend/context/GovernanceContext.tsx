@@ -25,7 +25,12 @@ const GovernmentProvider: React.FC<{ children: React.ReactNode }> = ({
     const [deployer, setDeployer] = useState<string>();
     const [amount,setAmount] = useState<string>()
     const [disability, setDisability] = useState(false);
-    const [totalBalance, setTotalBalance] = useState<string>('0')
+    const [totalBalance, setTotalBalance] = useState<number>(0)
+    const [stakeholderBalance, setStakeholderBalance] = useState<number>(0)
+    const [contributorBalance, setContributorBalance] = useState<number>(0)
+    const [stakeholderStatus , setStakeholderStatus] = useState(false)
+    const [contributorStatus , setContributorStatus] = useState(false)
+
 
 
     // wallet connection
@@ -106,6 +111,25 @@ const GovernmentProvider: React.FC<{ children: React.ReactNode }> = ({
 
 }
 
+// retreive stakeholders balance
+const getStakeholderBalance : GovernanceProps["getStakeholderBalance"] =async()=>{
+  if (stakeholderStatus) {
+      try {
+          const provider = new ethers.providers.Web3Provider(connect)
+          const signer = provider.getSigner()
+          const contract = new ethers.Contract(ADDRESS,ABI,signer)
+          const tx = await contract.getStakeholdersBalances()
+          let balance = await tx.toString()
+          balance =  ethers.utils.formatUnits(balance,'ether')
+          setStakeholderBalance(balance)
+         } catch (error) {
+          console.log(error);
+         }
+  }
+
+}
+
+
 
 
     return (
@@ -114,7 +138,8 @@ const GovernmentProvider: React.FC<{ children: React.ReactNode }> = ({
          connectWallet,
          getDeployer,
          contribute,
-         getTotalBalance
+         getTotalBalance,
+         getStakeholderBalance
         }}
       >
         {children}
