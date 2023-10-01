@@ -129,6 +129,24 @@ const getStakeholderBalance : GovernanceProps["getStakeholderBalance"] =async()=
 
 }
 
+  // 
+  const getContributorBalance : GovernanceProps["getContributorBalance"] =async()=>{
+    if (contributorStatus) {
+        try {
+            const provider = new ethers.providers.Web3Provider(connect)
+            const signer = provider.getSigner()
+            const contract = new ethers.Contract(ADDRESS,ABI,signer)
+            const tx = await contract.getContributorsBalance()
+            let balance = await tx.toString()
+            balance =  ethers.utils.formatUnits(balance,'ether')
+            setContributorBalance(balance)
+           } catch (error) {
+            console.log(error);
+           }
+    }
+
+
+}
 
 
 
@@ -139,7 +157,8 @@ const getStakeholderBalance : GovernanceProps["getStakeholderBalance"] =async()=
          getDeployer,
          contribute,
          getTotalBalance,
-         getStakeholderBalance
+         getStakeholderBalance,
+         getContributorBalance
         }}
       >
         {children}

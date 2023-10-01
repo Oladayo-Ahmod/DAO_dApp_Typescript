@@ -4,6 +4,7 @@ interface GovernanceProps{
     contribute : (modalRef : React.RefObject<HTMLElement>)=>void
     getTotalBalance : ()=> void
     getStakeholderBalance : ()=> void
+    getContributorBalance : ()=> void
     
 }
 
