@@ -1,0 +1,3 @@
+interface GovernanceProps{
+    connectWallet : ()=> void
+}
