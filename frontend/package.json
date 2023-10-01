@@ -9,16 +9,24 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@types/isotope-layout": "^3.0.10",
+    "bootstrap": "^5.3.2",
+    "ethers": "^5.7.2",
+    "isotope-layout": "^3.0.6",
+    "next": "latest",
     "react": "latest",
     "react-dom": "latest",
-    "next": "latest"
+    "sweetalert2": "^11.7.31"
   },
   "devDependencies": {
-    "typescript": "latest",
-    "@types/react": "latest",
     "@types/node": "latest",
+    "@types/react": "latest",
     "@types/react-dom": "latest",
+    "autoprefixer": "latest",
     "eslint": "latest",
-    "eslint-config-next": "latest"
+    "eslint-config-next": "latest",
+    "postcss": "latest",
+    "tailwindcss": "latest",
+    "typescript": "latest"
   }
 }
