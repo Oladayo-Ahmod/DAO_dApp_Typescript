@@ -3,7 +3,9 @@ import { ADDRESS, ABI } from '../constants/index';
 import { ethers , BigNumber} from 'ethers';
 import Router from 'next/router';
 import Swal from 'sweetalert2';
-import GovernanceProps from '../src/app/interfaces/governance';
+import GovernanceProps from '@/app/interfaces/governance';
+import FormdataProps from '@/app/interfaces/formdata';
+
 
 export const GOVERNANCE_CONTEXT = createContext<GovernanceProps | undefined>(
     undefined
@@ -30,6 +32,13 @@ const GovernmentProvider: React.FC<{ children: React.ReactNode }> = ({
     const [contributorBalance, setContributorBalance] = useState<number>(0)
     const [stakeholderStatus , setStakeholderStatus] = useState(false)
     const [contributorStatus , setContributorStatus] = useState(false)
+    const [formData , setFormData] = useState<FormdataProps>({
+      title : '',
+      description : '',
+      beneficiary : '',
+      amount : 0
+    })
+    
 
 
 
@@ -160,6 +169,38 @@ const getContributorStatus : GovernanceProps["getContributorStatus"] =async() =>
   }
 
 }
+
+  // proposal
+  const propose =async(modalRef : React.RefObject<HTMLElement>)=>{
+    if (stakeholderStatus) {
+        try {
+            setDisability(true)
+            const {title,description,beneficiary,amount} = formData
+            let parsedAmount = new ethers.utils.parseEther(amount);
+            const provider = new ethers.providers.Web3Provider(connect)
+            const signer = provider.getSigner()
+            const contract = new ethers.Contract(ADDRESS,ABI,signer)
+            const propose = await contract.createProposal(title,description,beneficiary.trim(),parsedAmount)
+            await propose.wait(1)
+            setDisability(false)
+            const modalElement = modalRef.current ? modalRef.current : ''
+            modalElement.classList.remove('show')
+            modalElement.style.display = 'none'
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                text: `You have madea a proposal successfully!`,
+                showConfirmButton: true,
+                timer: 4000
+            })
+
+        } catch (error) {
+            setDisability(false)
+            console.log(error);
+        }
+    }
+
+} 
 
 
 
