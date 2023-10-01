@@ -3,7 +3,7 @@ import React, { createContext, useEffect, useState } from 'react';
 import { ethers } from 'ethers';
 import Router from 'next/router';
 import Swal from 'sweetalert2';
-import GovernanceProps from '../interfaces/governance';
+import GovernanceProps from '../src/app/interfaces/governance';
 
 const GOVERNANCE_CONTEXT = createContext<GovernanceProps | undefined>(undefined)
 
@@ -27,6 +27,8 @@ const connectWallet : GovernanceProps["connectWallet"] =async function(){
         console.log(error);
     }
 }
+
+
 
 
 
