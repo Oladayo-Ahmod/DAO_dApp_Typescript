@@ -5,7 +5,7 @@ interface GovernanceProps{
     getTotalBalance : ()=> void
     getStakeholderBalance : ()=> void
     getContributorBalance : ()=> void
-    
+    getContributorStatus : ()=> void
 }
 
 export default GovernanceProps

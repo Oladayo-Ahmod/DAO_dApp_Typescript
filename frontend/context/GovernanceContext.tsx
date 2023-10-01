@@ -129,7 +129,7 @@ const getStakeholderBalance : GovernanceProps["getStakeholderBalance"] =async()=
 
 }
 
-  // 
+  // retrieve contributors balance
   const getContributorBalance : GovernanceProps["getContributorBalance"] =async()=>{
     if (contributorStatus) {
         try {
@@ -145,8 +145,22 @@ const getStakeholderBalance : GovernanceProps["getStakeholderBalance"] =async()=
            }
     }
 
+}
+
+// retrieve contributors status
+const getContributorStatus : GovernanceProps["getContributorStatus"] =async() => {
+  try {
+      const provider = new ethers.providers.Web3Provider(connect)
+      const signer = provider.getSigner()
+      const contract = new ethers.Contract(ADDRESS,ABI,signer)
+      const tx = await contract.isContributor()
+      setContributorStatus(tx)
+  } catch (error) {
+      console.log(error);
+  }
 
 }
+
 
 
 
@@ -158,7 +172,8 @@ const getStakeholderBalance : GovernanceProps["getStakeholderBalance"] =async()=
          contribute,
          getTotalBalance,
          getStakeholderBalance,
-         getContributorBalance
+         getContributorBalance,
+         getContributorStatus
         }}
       >
         {children}
