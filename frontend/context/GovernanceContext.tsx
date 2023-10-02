@@ -202,7 +202,7 @@ const getContributorStatus : GovernanceProps["getContributorStatus"] =async() =>
 } 
 
  // retrieve proposals
- const proposals =async()=>{
+ const proposals : GovernanceProps["proposals"] =async()=>{
   try {
       const provider = new ethers.providers.Web3Provider(connect)
       const signer = provider.getSigner()
@@ -230,6 +230,41 @@ const getContributorStatus : GovernanceProps["getContributorStatus"] =async() =>
       console.log(error);
   }
 }
+
+  // voting functionality
+  const voting =async(proposalId : number,vote : boolean)=>{
+    try {
+        const provider = new ethers.providers.Web3Provider(connect)
+        const signer = provider.getSigner()
+        const contract = new ethers.Contract(ADDRESS,ABI,signer)
+        const tx = await contract.performVote(proposalId,vote)
+        await tx.wait(1)
+
+    } catch (error : any) {
+        if(error.message.includes('Time has already passed')){
+            Swal.fire({
+                position: 'top-end',
+                icon: 'warning',
+                text: `Sorry, voting time has ended`,
+                showConfirmButton: true,
+                timer: 4000
+            })
+        }
+        else if (error.message.includes('double voting is not allowed')) {
+            Swal.fire({
+                position: 'top-end',
+                icon: 'warning',
+                text: `You have already voted!`,
+                showConfirmButton: true,
+                timer: 4000
+            })
+        }
+        else{
+            console.log(error);
+        }
+    }
+}
+
 
 
 
