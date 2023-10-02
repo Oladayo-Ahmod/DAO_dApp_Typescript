@@ -232,7 +232,7 @@ const getContributorStatus : GovernanceProps["getContributorStatus"] =async() =>
 }
 
   // voting functionality
-  const voting =async(proposalId : number,vote : boolean)=>{
+  const voting : GovernanceProps["voting"] =async(proposalId : number,vote : boolean)=>{
     try {
         const provider = new ethers.providers.Web3Provider(connect)
         const signer = provider.getSigner()
@@ -281,7 +281,8 @@ const getContributorStatus : GovernanceProps["getContributorStatus"] =async() =>
          getContributorBalance,
          getContributorStatus,
          propose,
-         proposals
+         proposals,
+         voting
         }}
       >
         {children}

@@ -6,8 +6,10 @@ interface GovernanceProps{
     getStakeholderBalance : ()=> void
     getContributorBalance : ()=> void
     getContributorStatus : ()=> void
-    propose : (modalRef : React.RefObject<HTMLElement>) => void,
+    propose : (modalRef : React.RefObject<HTMLElement>) => void
     proposals : () => void
+    voting : (id : number, vote : boolean)=> void
+
 }
 
 export default GovernanceProps
