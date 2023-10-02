@@ -171,7 +171,7 @@ const getContributorStatus : GovernanceProps["getContributorStatus"] =async() =>
 }
 
   // proposal
-  const propose =async(modalRef : React.RefObject<HTMLElement>)=>{
+  const propose : GovernanceProps["propose"] =async(modalRef : React.RefObject<HTMLElement>)=>{
     if (stakeholderStatus) {
         try {
             setDisability(true)
@@ -216,7 +216,8 @@ const getContributorStatus : GovernanceProps["getContributorStatus"] =async() =>
          getTotalBalance,
          getStakeholderBalance,
          getContributorBalance,
-         getContributorStatus
+         getContributorStatus,
+         propose
         }}
       >
         {children}
