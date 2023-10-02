@@ -204,6 +204,37 @@ const getContributorStatus : GovernanceProps["getContributorStatus"] =async() =>
 
 } 
 
+ // retrieve proposals
+ const proposals =async()=>{
+  try {
+      const provider = new ethers.providers.Web3Provider(connect)
+      const signer = provider.getSigner()
+      const contract = new ethers.Contract(ADDRESS,ABI,signer)
+      const proposals = await contract.getAllProposals()
+      const data = await Promise.all(await proposals.map((e : any{}) =>{
+          let info = {
+              id : e.id.toString(),
+              title : e.title,
+              description : e.description,
+              amount : ethers.utils.formatEther(e.amount.toString(),'ether'),
+              beneficiary : e.beneficiary,
+              upVote : e.upVote.toString(),
+              downVote : e.downVotes.toString(),
+              paid : e.paid
+
+          }
+
+          return info
+      }))
+
+      setProposalsData(data)
+
+  } catch (error) {
+      console.log(error);
+  }
+}
+
+
 
 
 
