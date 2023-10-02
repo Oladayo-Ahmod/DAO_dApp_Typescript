@@ -32,6 +32,7 @@ const GovernmentProvider: React.FC<{ children: React.ReactNode }> = ({
     const [contributorBalance, setContributorBalance] = useState<number>(0)
     const [stakeholderStatus , setStakeholderStatus] = useState(false)
     const [contributorStatus , setContributorStatus] = useState(false)
+    const [proposalsData, setProposalsData] = useState()
     const [formData , setFormData] = useState<FormdataProps>({
       title : '',
       description : '',
@@ -211,12 +212,12 @@ const getContributorStatus : GovernanceProps["getContributorStatus"] =async() =>
       const signer = provider.getSigner()
       const contract = new ethers.Contract(ADDRESS,ABI,signer)
       const proposals = await contract.getAllProposals()
-      const data = await Promise.all(await proposals.map((e : any{}) =>{
+      const data = await Promise.all(await proposals.map((e : any) =>{
           let info = {
               id : e.id.toString(),
               title : e.title,
               description : e.description,
-              amount : ethers.utils.formatEther(e.amount.toString(),'ether'),
+              amount : ethers.utils.formatEther(e.amount.toString()),
               beneficiary : e.beneficiary,
               upVote : e.upVote.toString(),
               downVote : e.downVotes.toString(),
