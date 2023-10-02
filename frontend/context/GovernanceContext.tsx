@@ -33,8 +33,8 @@ const GovernmentProvider: React.FC<{ children: React.ReactNode }> = ({
     const [contributorBalance, setContributorBalance] = useState<number>(0)
     const [stakeholderStatus , setStakeholderStatus] = useState(false)
     const [contributorStatus , setContributorStatus] = useState(false)
-    const [proposalsData, setProposalsData] = useState<ProposalData | undefined>(undefined)
-    const [formData , setFormData] = useState<FormdataProps | undefined>(undefined)
+    const [proposalsData, setProposalsData] = useState<ProposalData[] | undefined>()
+    const [formData , setFormData] = useState<FormdataProps | undefined>()
     
 
 
@@ -245,7 +245,8 @@ const getContributorStatus : GovernanceProps["getContributorStatus"] =async() =>
          getStakeholderBalance,
          getContributorBalance,
          getContributorStatus,
-         propose
+         propose,
+         proposals
         }}
       >
         {children}
