@@ -36,7 +36,7 @@ const GovernmentProvider: React.FC<{ children: React.ReactNode }> = ({
       title : '',
       description : '',
       beneficiary : '',
-      amount : 0
+      amount : '0'
     })
     
 
@@ -176,7 +176,7 @@ const getContributorStatus : GovernanceProps["getContributorStatus"] =async() =>
         try {
             setDisability(true)
             const {title,description,beneficiary,amount} = formData
-            let parsedAmount = new ethers.utils.parseEther(amount);
+            let parsedAmount : BigNumber =  ethers.utils.parseEther(amount) as BigNumber;
             const provider = new ethers.providers.Web3Provider(connect)
             const signer = provider.getSigner()
             const contract = new ethers.Contract(ADDRESS,ABI,signer)
@@ -184,8 +184,10 @@ const getContributorStatus : GovernanceProps["getContributorStatus"] =async() =>
             await propose.wait(1)
             setDisability(false)
             const modalElement = modalRef.current ? modalRef.current : ''
-            modalElement.classList.remove('show')
-            modalElement.style.display = 'none'
+            if(modalElement instanceof HTMLElement){
+              modalElement.classList.remove('show')
+              modalElement.style.display = 'none'
+            }
             Swal.fire({
                 position: 'top-end',
                 icon: 'success',

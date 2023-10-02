@@ -2,7 +2,7 @@ interface FormdataProps{
     title : string
     description : string
     beneficiary : string
-    amount : number
+    amount : string
 }
 
 export default FormdataProps
