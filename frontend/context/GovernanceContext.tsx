@@ -5,6 +5,7 @@ import Router from 'next/router';
 import Swal from 'sweetalert2';
 import GovernanceProps from '@/app/interfaces/governance';
 import FormdataProps from '@/app/interfaces/formdata';
+import ProposalData from '@/app/interfaces/proposalData';
 
 
 export const GOVERNANCE_CONTEXT = createContext<GovernanceProps | undefined>(
@@ -32,13 +33,8 @@ const GovernmentProvider: React.FC<{ children: React.ReactNode }> = ({
     const [contributorBalance, setContributorBalance] = useState<number>(0)
     const [stakeholderStatus , setStakeholderStatus] = useState(false)
     const [contributorStatus , setContributorStatus] = useState(false)
-    const [proposalsData, setProposalsData] = useState()
-    const [formData , setFormData] = useState<FormdataProps>({
-      title : '',
-      description : '',
-      beneficiary : '',
-      amount : '0'
-    })
+    const [proposalsData, setProposalsData] = useState<ProposalData | undefined>(undefined)
+    const [formData , setFormData] = useState<FormdataProps | undefined>(undefined)
     
 
 
