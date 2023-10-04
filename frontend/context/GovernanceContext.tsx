@@ -341,6 +341,7 @@ useEffect(()=>{
          contributorBalance,
          contributorStatus,
          stakeholderStatus,
+         
         }}
       >
         {children}

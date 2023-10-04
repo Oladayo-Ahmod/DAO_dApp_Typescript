@@ -4,6 +4,7 @@ import { Inter } from 'next/font/google'
 import { useContext, useEffect, useRef, useState } from 'react'
 import { GOVERNANCE_CONTEXT } from '../../context/GovernanceContext'
 import GovernanceProps from './interfaces/governance'
+import FormdataProps from './interfaces/formdata'
 
 const inter = Inter({ subsets: ['latin'] })
 let Isotope : any
@@ -30,9 +31,7 @@ const Home =()=> {
         getStakeholderStatus,
         contributorStatus,
         stakeholderStatus,
-        setFormData,
         propose,
-        formData,
         proposals,
         proposalsData,
         voting,
@@ -40,6 +39,8 @@ const Home =()=> {
         getDeployer,
         deployer
       } = useContext<GovernanceProps>(GOVERNANCE_CONTEXT)
+
+      const {setFormData, formData} = useContext<FormdataProps>(GOVERNANCE_CONTEXT)
 
   const modalRef = useRef(null) // boostrap modal
   const modalRef2 = useRef(null) // boostrap modal
