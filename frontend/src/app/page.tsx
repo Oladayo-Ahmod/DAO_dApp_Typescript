@@ -18,7 +18,7 @@ const Home =()=> {
         connectWallet,
         account,
         setAmount,
-        Contribute,
+        contribute,
         disability,
         getTotalBalance,
         totalBalance,
