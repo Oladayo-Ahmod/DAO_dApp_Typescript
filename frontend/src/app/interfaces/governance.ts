@@ -1,3 +1,5 @@
+import ProposalData from "./proposalData"
+
 interface GovernanceProps{
     account : string | undefined
     disability : boolean
@@ -19,6 +21,7 @@ interface GovernanceProps{
     proposals : () => void
     voting : (id : number, vote : boolean)=> void
     payBeneficiary : (id : number) => void
+    proposalsData : ProposalData[] | undefined
     setFormData : React.Dispatch<React.SetStateAction<{
         title : string
         description : string

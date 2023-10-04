@@ -33,6 +33,8 @@ const Home =()=> {
         stakeholderStatus,
         propose,
         proposals,
+        formData,
+        setFormData,
         proposalsData,
         voting,
         payBeneficiary,
@@ -40,7 +42,6 @@ const Home =()=> {
         deployer
       } = useContext<GovernanceProps>(GOVERNANCE_CONTEXT)
 
-      const {setFormData, formData} = useContext<FormdataProps>(GOVERNANCE_CONTEXT)
 
   const modalRef = useRef(null) // boostrap modal
   const modalRef2 = useRef(null) // boostrap modal

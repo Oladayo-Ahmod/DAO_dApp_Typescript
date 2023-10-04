@@ -347,7 +347,8 @@ useEffect(()=>{
             contributorStatus,
             stakeholderStatus,
             formData,
-            setFormData
+            setFormData,
+            proposalsData
         }}
       >
         {children}
