@@ -335,7 +335,9 @@ useEffect(()=>{
          payBeneficiary,
          setAmount,
          disability,
-         account
+         account,
+         totalBalance,
+         stakeholderBalance
         }}
       >
         {children}

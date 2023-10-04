@@ -2,6 +2,8 @@ interface GovernanceProps{
     account : string | undefined
     disability : boolean
     setAmount : React.Dispatch<React.SetStateAction<string | undefined>>
+    totalBalance : number
+    stakeholderBalance : number
     connectWallet : ()=> void
     getDeployer : ()=> void
     contribute : (modalRef : React.RefObject<HTMLElement>)=>void
