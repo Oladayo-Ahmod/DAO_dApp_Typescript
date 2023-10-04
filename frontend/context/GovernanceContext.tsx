@@ -265,6 +265,28 @@ const getContributorStatus : GovernanceProps["getContributorStatus"] =async() =>
     }
 }
 
+    // payment to beneficiary
+    const payBeneficiary =async(proposalId : number)=>{
+    try {
+        const provider = new ethers.providers.Web3Provider(connect)
+        const signer = provider.getSigner()
+        const contract = new ethers.Contract(ADDRESS,ABI,signer)
+        const tx = await contract.payBeneficiary(proposalId)
+        await tx.wait(1)
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            text: `Payment made successfully!`,
+            showConfirmButton: true,
+            timer: 4000
+        })
+
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+
 
 
 
