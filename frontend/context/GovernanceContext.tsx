@@ -8,10 +8,7 @@ import FormdataProps from '@/app/interfaces/formdata';
 import ProposalData from '@/app/interfaces/proposalData';
 
 
-export const GOVERNANCE_CONTEXT = createContext<{
-    GovernanceProps : GovernanceProps,
-    FormdataProps : FormdataProps,
-} | undefined>(
+export const GOVERNANCE_CONTEXT = createContext<GovernanceProps | undefined>(
     undefined
   );
 
@@ -37,7 +34,12 @@ const GovernmentProvider: React.FC<{ children: React.ReactNode }> = ({
     const [stakeholderStatus , setStakeholderStatus] = useState(false)
     const [contributorStatus , setContributorStatus] = useState(false)
     const [proposalsData, setProposalsData] = useState<ProposalData[] | undefined>()
-    const [formData , setFormData] = useState<FormdataProps>()
+    const [formData , setFormData] = useState<FormdataProps | undefined>({
+        title : '',
+        description : '',
+        beneficiary : '',
+        amount : ''
+    })
     
 
 
@@ -324,7 +326,6 @@ useEffect(()=>{
     return (
       <GOVERNANCE_CONTEXT.Provider
         value={{
-            GovernanceProps : {
             connectWallet,
             getDeployer,
             contribute,
@@ -345,9 +346,8 @@ useEffect(()=>{
             contributorBalance,
             contributorStatus,
             stakeholderStatus,
-            }
-         formData,
-         setFormData
+            formData,
+            setFormData
         }}
       >
         {children}

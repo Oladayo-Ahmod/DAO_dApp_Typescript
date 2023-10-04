@@ -19,6 +19,18 @@ interface GovernanceProps{
     proposals : () => void
     voting : (id : number, vote : boolean)=> void
     payBeneficiary : (id : number) => void
+    setFormData : React.Dispatch<React.SetStateAction<{
+        title : string
+        description : string
+        beneficiary : string
+        amount : string
+    } | undefined>> 
+    formData : {
+        title : string
+        description : string
+        beneficiary : string
+        amount : string
+    } | undefined
 
 }
 
