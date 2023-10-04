@@ -72,10 +72,11 @@ const Home =()=> {
 
   // handling filter key change
   useEffect(() => {
-    // console.log(totalBalance);
+   if(isotope.current){
     filterKey === '*'
       ? isotope.current.arrange({filter: `*`})
       : isotope.current.arrange({filter: `.${filterKey}`})
+  }
   }, [filterKey])
   useEffect(()=>{
     connectWallet()
@@ -96,7 +97,7 @@ const Home =()=> {
   },[getTotalBalance,getStakeholderBalance,getContributorBalance,proposals])
 
 
-  const handleFilterKeyChange = key => () => setFilterKey(key)
+  const handleFilterKeyChange = (key : string) => () => setFilterKey(key)
   return (
     <>
       <Head>
