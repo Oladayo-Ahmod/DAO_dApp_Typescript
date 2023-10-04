@@ -24,10 +24,10 @@ interface GovernanceProps{
     payBeneficiary : (id : number) => void
     proposalsData : ProposalData[] | undefined
     setFormData : React.Dispatch<React.SetStateAction<{
-        title : string
-        description : string
-        beneficiary : string
-        amount : string
+        title? : string
+        description? : string
+        beneficiary? : string
+        amount? : string
     } | undefined>> 
     formData : {
         title : string

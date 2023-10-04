@@ -150,7 +150,7 @@ const Home =()=> {
                   <button type='button' data-bs-toggle="modal" data-bs-target="#modalId" className='btn btn-primary'>Contribute</button>
                   
                   {/* <!-- Modal Body --> */}
-                  <div className="modal fade" ref={modalRef} id="modalId" tabindex="-1" data-bs-backdrop="false" data-bs-keyboard="false" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
+                  <div className="modal fade" ref={modalRef} id="modalId" data-bs-backdrop="false" data-bs-keyboard="false" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
                     <div className="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm" role="document">
                       <div className="modal-content">
                         <div className="modal-header">
@@ -167,7 +167,7 @@ const Home =()=> {
                     </div>
                   </div>
 
-                  <div className="modal fade" id="modalId2" ref={modalRef2} tabindex="-1" data-bs-backdrop="false" data-bs-keyboard="false" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
+                  <div className="modal fade" id="modalId2" ref={modalRef2} data-bs-backdrop="false" data-bs-keyboard="false" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
                     <div className="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm" role="document">
                       <div className="modal-content">
                         <div className="modal-header">
@@ -175,7 +175,7 @@ const Home =()=> {
                             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div className="modal-body">
-                          <input className='form-control mb-2' onChange={e => setFormData({...formData, title : e.target.value})} placeholder='Title'/>
+                          <input className='form-control mb-2' onChange={(e) => setFormData({...formData, title : e.target.value})} placeholder='Title'/>
                           <input className='form-control mb-2'  onChange={e => setFormData({...formData,amount : e.target.value})} type='number' placeholder='Amount'/>
                           <input className='form-control mb-2'  onChange={e => setFormData({...formData,beneficiary : e.target.value})}  placeholder='Beneficiary'/>
                           <input className='form-control mb-2'  onChange={e => setFormData({...formData, description : e.target.value})}  placeholder='Description'/>
