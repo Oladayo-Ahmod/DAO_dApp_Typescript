@@ -266,7 +266,7 @@ const getContributorStatus : GovernanceProps["getContributorStatus"] =async() =>
 }
 
     // payment to beneficiary
-    const payBeneficiary =async(proposalId : number)=>{
+    const payBeneficiary : GovernanceProps["payBeneficiary"] =async(proposalId : number)=>{
     try {
         const provider = new ethers.providers.Web3Provider(connect)
         const signer = provider.getSigner()
@@ -304,7 +304,8 @@ const getContributorStatus : GovernanceProps["getContributorStatus"] =async() =>
          getContributorStatus,
          propose,
          proposals,
-         voting
+         voting,
+         payBeneficiary
         }}
       >
         {children}

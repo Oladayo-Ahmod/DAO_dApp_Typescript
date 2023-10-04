@@ -9,6 +9,7 @@ interface GovernanceProps{
     propose : (modalRef : React.RefObject<HTMLElement>) => void
     proposals : () => void
     voting : (id : number, vote : boolean)=> void
+    payBeneficiary : (id : number) => void
 
 }
 
