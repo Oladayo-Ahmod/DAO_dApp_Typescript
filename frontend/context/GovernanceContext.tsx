@@ -135,6 +135,21 @@ const getStakeholderBalance : GovernanceProps["getStakeholderBalance"] =async()=
 
 }
 
+// retrieve stakeholders status
+const getStakeholderStatus =async() => {
+    try {
+        const provider = new ethers.providers.Web3Provider(connect)
+        const signer = provider.getSigner()
+        const contract = new ethers.Contract(ADDRESS,ABI,signer)
+        const tx = await contract.stakeholderStatus()
+        setStakeholderStatus(tx)
+    } catch (error) {
+        console.log(error);
+    }
+
+}
+
+
   // retrieve contributors balance
   const getContributorBalance : GovernanceProps["getContributorBalance"] =async()=>{
     if (contributorStatus) {
@@ -286,11 +301,22 @@ const getContributorStatus : GovernanceProps["getContributorStatus"] =async() =>
     }
 }
 
+useEffect(()=>{
+    connectWallet()
+    getDeployer()
+  },[account,deployer])
 
+  useEffect(()=>{
+    getContributorStatus()
+    getStakeholderStatus()
+  },[getContributorStatus,getStakeholderStatus])
 
-
-
-
+  useEffect(()=>{
+    getTotalBalance()
+    getStakeholderBalance()
+    getContributorBalance()
+    proposals()
+  },[getTotalBalance,getStakeholderBalance,getContributorBalance,proposals])
 
     return (
       <GOVERNANCE_CONTEXT.Provider
@@ -300,6 +326,7 @@ const getContributorStatus : GovernanceProps["getContributorStatus"] =async() =>
          contribute,
          getTotalBalance,
          getStakeholderBalance,
+         getStakeholderStatus,
          getContributorBalance,
          getContributorStatus,
          propose,
