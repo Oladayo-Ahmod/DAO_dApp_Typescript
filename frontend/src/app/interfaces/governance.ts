@@ -4,6 +4,9 @@ interface GovernanceProps{
     setAmount : React.Dispatch<React.SetStateAction<string | undefined>>
     totalBalance : number
     stakeholderBalance : number
+    contributorBalance : number
+    contributorStatus : boolean
+    stakeholderStatus : boolean
     connectWallet : ()=> void
     getDeployer : ()=> void
     contribute : (modalRef : React.RefObject<HTMLElement>)=>void

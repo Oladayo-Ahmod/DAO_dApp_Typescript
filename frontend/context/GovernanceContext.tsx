@@ -337,7 +337,10 @@ useEffect(()=>{
          disability,
          account,
          totalBalance,
-         stakeholderBalance
+         stakeholderBalance,
+         contributorBalance,
+         contributorStatus,
+         stakeholderStatus,
         }}
       >
         {children}
