@@ -8,7 +8,7 @@ import FormdataProps from '@/app/interfaces/formdata';
 import ProposalData from '@/app/interfaces/proposalData';
 
 
-export const GOVERNANCE_CONTEXT = createContext<GovernanceProps | undefined>(
+export const GOVERNANCE_CONTEXT = createContext<GovernanceProps | >(
     undefined
   );
 
@@ -348,7 +348,8 @@ useEffect(()=>{
             stakeholderStatus,
             formData,
             setFormData,
-            proposalsData
+            proposalsData,
+            deployer
         }}
       >
         {children}

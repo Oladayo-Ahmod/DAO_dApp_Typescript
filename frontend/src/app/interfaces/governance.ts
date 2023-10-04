@@ -11,6 +11,7 @@ interface GovernanceProps{
     stakeholderStatus : boolean
     connectWallet : ()=> void
     getDeployer : ()=> void
+    deployer : string | undefined
     contribute : (modalRef : React.RefObject<HTMLElement>)=>void
     getTotalBalance : ()=> void
     getStakeholderBalance : ()=> void

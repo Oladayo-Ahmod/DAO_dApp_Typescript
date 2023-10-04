@@ -5,6 +5,8 @@ import { useContext, useEffect, useRef, useState } from 'react'
 import { GOVERNANCE_CONTEXT } from '../../context/GovernanceContext'
 import GovernanceProps from './interfaces/governance'
 import FormdataProps from './interfaces/formdata'
+import Isotope from 'isotope-layout'; // Import the correct type for Isotope
+
 
 const inter = Inter({ subsets: ['latin'] })
 let Isotope : any
@@ -15,6 +17,7 @@ if(typeof window !=='undefined'){
   
 
 const Home =()=> {
+  
   const {
         connectWallet,
         account,
@@ -46,7 +49,7 @@ const Home =()=> {
   const modalRef = useRef(null) // boostrap modal
   const modalRef2 = useRef(null) // boostrap modal
   // state for storing the isotope object, with an initial value of null
-  const isotope = useRef();
+  const isotope = useRef<Isotope | null>(null);
   // store the filter keyword in a state
   const [filterKey, setFilterKey] = useState('*')
   // initialize an Isotope object with configs
@@ -60,7 +63,11 @@ const Home =()=> {
       layoutMode: 'fitRows',
     })
     // cleanup
-    return () => isotope.current.destroy()
+    return () => {
+      if (isotope.current) {
+        isotope.current.destroy();
+      }
+    }
   }, [])
 
   // handling filter key change
