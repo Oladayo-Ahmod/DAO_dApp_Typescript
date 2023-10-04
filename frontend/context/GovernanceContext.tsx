@@ -8,7 +8,10 @@ import FormdataProps from '@/app/interfaces/formdata';
 import ProposalData from '@/app/interfaces/proposalData';
 
 
-export const GOVERNANCE_CONTEXT = createContext<GovernanceProps | undefined>(
+export const GOVERNANCE_CONTEXT = createContext<{
+    GovernanceProps : GovernanceProps,
+    FormdataProps : FormdataProps,
+} | undefined>(
     undefined
   );
 
@@ -34,7 +37,7 @@ const GovernmentProvider: React.FC<{ children: React.ReactNode }> = ({
     const [stakeholderStatus , setStakeholderStatus] = useState(false)
     const [contributorStatus , setContributorStatus] = useState(false)
     const [proposalsData, setProposalsData] = useState<ProposalData[] | undefined>()
-    const [formData , setFormData] = useState<FormdataProps | undefined>()
+    const [formData , setFormData] = useState<FormdataProps>()
     
 
 
@@ -321,27 +324,30 @@ useEffect(()=>{
     return (
       <GOVERNANCE_CONTEXT.Provider
         value={{
-         connectWallet,
-         getDeployer,
-         contribute,
-         getTotalBalance,
-         getStakeholderBalance,
-         getStakeholderStatus,
-         getContributorBalance,
-         getContributorStatus,
-         propose,
-         proposals,
-         voting,
-         payBeneficiary,
-         setAmount,
-         disability,
-         account,
-         totalBalance,
-         stakeholderBalance,
-         contributorBalance,
-         contributorStatus,
-         stakeholderStatus,
-         
+            GovernanceProps : {
+            connectWallet,
+            getDeployer,
+            contribute,
+            getTotalBalance,
+            getStakeholderBalance,
+            getStakeholderStatus,
+            getContributorBalance,
+            getContributorStatus,
+            propose,
+            proposals,
+            voting,
+            payBeneficiary,
+            setAmount,
+            disability,
+            account,
+            totalBalance,
+            stakeholderBalance,
+            contributorBalance,
+            contributorStatus,
+            stakeholderStatus,
+            }
+         formData,
+         setFormData
         }}
       >
         {children}

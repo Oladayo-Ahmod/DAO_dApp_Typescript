@@ -8,13 +8,13 @@ interface FormdataProps{
         description : string
         beneficiary : string
         amount : string
-    }>>
+    }>> 
     formData : {
         title : string
         description : string
         beneficiary : string
         amount : string
-    }
+    } 
 }
 
 export default FormdataProps
