@@ -332,7 +332,10 @@ useEffect(()=>{
          propose,
          proposals,
          voting,
-         payBeneficiary
+         payBeneficiary,
+         setAmount,
+         disability,
+         account
         }}
       >
         {children}

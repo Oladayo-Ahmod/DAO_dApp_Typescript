@@ -151,7 +151,7 @@ const Home =()=> {
                           <input className='form-control' onChange={e=> setAmount( e.target.value)} placeholder='0.1ETH and above to be a stakeholder'/>
                         </div>
                         <div className="modal-footer">
-                          <button type="button" className="btn btn-primary" disabled={disability} onClick={()=>Contribute(modalRef)}>Submit</button>
+                          <button type="button" className="btn btn-primary" disabled={disability} onClick={()=>contribute(modalRef)}>Submit</button>
                         </div>
                       </div>
                     </div>
