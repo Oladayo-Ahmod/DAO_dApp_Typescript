@@ -258,7 +258,7 @@ const Home =()=> {
                       </span>
                      </button>
 
-                     <button className="btn btn-danger btn-sm position-relative" type='buttton' onClick={()=>voting(i.id,false)}>
+                     <button className="btn btn-danger btn-sm position-relative" type='button' onClick={()=>voting(i.id,false)}>
                       downVote 
                       <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning">
                         {i.downVote}
@@ -267,12 +267,12 @@ const Home =()=> {
                      </button>
                      {
                         Number(account) == Number(deployer) ? 
-                          <button className="btn btn-danger btn-sm position-relative m-2" type='buttton' onClick={()=>payBeneficiary(i.id)}>
+                          <button className="btn btn-danger btn-sm position-relative m-2" type='button' onClick={()=>payBeneficiary(i.id)}>
                           pay beneficiary
                          </button>
                         
                         :
-                          <button className="btn btn-danger btn-sm position-relative m-2" disabled='true' type='buttton' onClick={()=>payBeneficiary(i.id)}>
+                          <button className="btn btn-danger btn-sm position-relative m-2" disabled={true} type='button' onClick={()=>payBeneficiary(i.id)}>
                           pay beneficiary
                          </button>
                      }
