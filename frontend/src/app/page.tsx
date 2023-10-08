@@ -1,3 +1,5 @@
+"use client"
+
 import Head from 'next/head'
 import 'bootstrap/dist/css/bootstrap.css'
 import { Inter } from 'next/font/google'
@@ -9,7 +11,7 @@ import Isotope from 'isotope-layout'; // Import the correct type for Isotope
 
 
 const inter = Inter({ subsets: ['latin'] })
-let Isotope : any
+let Isotopes : any
 let connect : any
 if(typeof window !=='undefined'){
     connect = (window as any).ethereum
@@ -43,8 +45,7 @@ const Home =()=> {
         payBeneficiary,
         getDeployer,
         deployer
-      } = useContext<GovernanceProps>(GOVERNANCE_CONTEXT)
-
+      } = useContext(GOVERNANCE_CONTEXT) as GovernanceProps
 
   const modalRef = useRef(null) // boostrap modal
   const modalRef2 = useRef(null) // boostrap modal
@@ -57,8 +58,8 @@ const Home =()=> {
     require('bootstrap/dist/js/bootstrap.bundle')
     if(typeof window === 'undefined') return;
     const loadIsotope  =()=> require('isotope-layout')
-    Isotope = loadIsotope()
-    isotope.current = new Isotope('.filter-container', {
+    Isotopes = loadIsotope()
+    Isotopes.current = new Isotope('.filter-container', {
       itemSelector: '.filter-item',
       layoutMode: 'fitRows',
     })
@@ -72,6 +73,7 @@ const Home =()=> {
 
   // handling filter key change
   useEffect(() => {
+    
    if(isotope.current){
     filterKey === '*'
       ? isotope.current.arrange({filter: `*`})

@@ -1,3 +1,5 @@
+"use client"
+
 import React, { createContext, useEffect, useState } from 'react';
 import { ADDRESS, ABI } from '../constants/index';
 import { ethers , BigNumber} from 'ethers';
@@ -8,7 +10,7 @@ import FormdataProps from '@/app/interfaces/formdata';
 import ProposalData from '@/app/interfaces/proposalData';
 
 
-export const GOVERNANCE_CONTEXT = createContext<GovernanceProps | >(
+export const GOVERNANCE_CONTEXT = createContext<GovernanceProps | undefined>(
     undefined
   );
 
@@ -33,8 +35,8 @@ const GovernmentProvider: React.FC<{ children: React.ReactNode }> = ({
     const [contributorBalance, setContributorBalance] = useState<number>(0)
     const [stakeholderStatus , setStakeholderStatus] = useState(false)
     const [contributorStatus , setContributorStatus] = useState(false)
-    const [proposalsData, setProposalsData] = useState<ProposalData[] | undefined>()
-    const [formData , setFormData] = useState<FormdataProps | undefined>({
+    const [proposalsData, setProposalsData] = useState<ProposalData[]>()
+    const [formData , setFormData] = useState<FormdataProps>({
         title : '',
         description : '',
         beneficiary : '',
