@@ -156,7 +156,6 @@ const getStakeholderStatus =async() => {
 
 }
 
-
   // retrieve contributors balance
   const getContributorBalance : GovernanceProps["getContributorBalance"] =async()=>{
     if (contributorStatus) {
