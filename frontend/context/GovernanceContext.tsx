@@ -209,7 +209,7 @@ const getContributorStatus : GovernanceProps["getContributorStatus"] =async() =>
             Swal.fire({
                 position: 'top-end',
                 icon: 'success',
-                text: `You have madea a proposal successfully!`,
+                text: `You have made a proposal successfully!`,
                 showConfirmButton: true,
                 timer: 4000
             })

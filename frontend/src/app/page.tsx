@@ -56,6 +56,7 @@ const Home =()=> {
   // initialize an Isotope object with configs
   useEffect(() => {
     require('bootstrap/dist/js/bootstrap.bundle')
+    
     if(typeof window === 'undefined') return;
     const loadIsotope  =()=> require('isotope-layout')
     Isotopes = loadIsotope()
@@ -74,7 +75,7 @@ const Home =()=> {
   // handling filter key change
   useEffect(() => {
     
-   if(isotope.current){
+   if(isotope.current){    
     filterKey === '*'
       ? isotope.current.arrange({filter: `*`})
       : isotope.current.arrange({filter: `.${filterKey}`})
@@ -96,6 +97,8 @@ const Home =()=> {
     getStakeholderBalance()
     getContributorBalance()
     proposals()
+    // console.log(proposalsData);
+
   },[getTotalBalance,getStakeholderBalance,getContributorBalance,proposals])
 
 
